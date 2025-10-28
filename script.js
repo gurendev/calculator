@@ -9,9 +9,12 @@ const divide = (a, b) => {
     return a / b;
 }
 
-let firstNumber = "";
-let secondNumber = "";
-let operator = "";
+const state = {
+    operator: "",
+    first: "",
+    second: ""
+}
+
 
 const operate = (op, first, second) => {
     switch (op) {
@@ -27,3 +30,38 @@ const operate = (op, first, second) => {
             return undefined;
     }
 }
+
+const handleNumberClick = (e) => {
+    storeNumber(e.target.textContent);
+    updateDisplay();
+}
+
+const addNumberEvents = () => {
+    const numberButtons = document.querySelectorAll("button.number");
+    for (const button of numberButtons) {
+        button.addEventListener("click", handleNumberClick);
+    }
+}
+
+const storeNumber = (input) => {
+    const currentNumber = getCurrentNumber();
+    state[currentNumber] += input;
+}
+
+const updateDisplay = (text) => {
+    const resultDisplay = document.querySelector(".result");
+    if (text) {
+        resultDisplay.textContent = text;
+    } else {
+        resultDisplay.textContent = state[getCurrentNumber()];
+    }
+}
+
+const getCurrentNumber = () => {
+    if (state.operator) {
+        return "second";
+    }
+    return "first";
+}
+
+addNumberEvents();
