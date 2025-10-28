@@ -45,6 +45,9 @@ const addNumberEvents = () => {
 
 const storeNumber = (input) => {
     const currentNumber = getCurrentNumber();
+    if (input === "." && state[currentNumber].includes(".")) {
+        return;
+    }
     state[currentNumber] += input;
 }
 
