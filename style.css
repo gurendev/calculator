@@ -30,3 +30,41 @@ main {
     height: 100px;
     padding: 1rem;
 }
+
+.keyboard {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    flex-grow: 1;
+    display: flex;
+}
+
+.row button {
+    flex-grow: 1;
+    flex-basis: 0;
+}
+
+.number {
+    background-color: rgb(50, 52, 56);
+    color: rgb(191, 191, 191);
+    font-weight: bold;
+}
+
+.operator {
+    background-color: rgb(44, 48, 61);
+    color: rgb(238, 240, 255);
+    font-weight: bold;
+}
+
+.equals {
+    background-color: rgb(168, 199, 250);
+    color: rgb(31, 31, 31);
+    font-weight: bold;
+}
+
+.equals:active {
+    background-color: #aecbfa;
+}
