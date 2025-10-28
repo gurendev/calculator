@@ -67,4 +67,17 @@ const getCurrentNumber = () => {
     return "first";
 }
 
+const handleOperatorClick = (e) => {
+    state["operator"] = e.target.id;
+    updateDisplay(e.target.textContent);
+}
+
+const addOperatorEvents = () => {
+    const operatorButtons = document.querySelectorAll("button.operator");
+    for (const button of operatorButtons) {
+        button.addEventListener("click", handleOperatorClick);
+    }
+}
+
 addNumberEvents();
+addOperatorEvents();
