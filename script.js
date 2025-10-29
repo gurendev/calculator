@@ -97,7 +97,7 @@ const handleEqualsClick = (e) => {
     if (!state.operator || !state.second) {
         return;
     }
-    const result = calculateResult();
+    const result = roundThreeDecimals(calculateResult());
     resetState();
     if (result) {
         updateDisplay(result);
@@ -118,6 +118,10 @@ const addOperatorEvents = () => {
     for (const button of operatorButtons) {
         button.addEventListener("click", handleOperatorClick);
     }
+}
+
+const roundThreeDecimals = (number) => {
+    return Math.round(number * 1000) / 1000;
 }
 
 addNumberEvents();
