@@ -72,6 +72,42 @@ const handleOperatorClick = (e) => {
     updateDisplay(e.target.textContent);
 }
 
+const calculateResult = () => {
+    const firstNumber = Number(state.first);
+    const secondNumber = Number(state.second);
+    if (Number.isNaN(firstNumber) || Number.isNaN(secondNumber)) {
+        return undefined;
+    }
+    const result = operate(state.operator, firstNumber, secondNumber);
+    return result;
+}
+
+const addEqualsEvent = () => {
+    const equalsButton = document.querySelector("button.equals");
+    equalsButton.addEventListener("click", handleEqualsClick);
+}
+
+const handleEqualsClick = (e) => {
+    console.log(state);
+    if (!state.operator || !state.second) {
+        return;
+    }
+    const result = calculateResult();
+    resetState();
+    if (result) {
+        updateDisplay(result);
+        state.first = String(result);
+    } else {
+        updateDisplay("ERROR");
+    }
+}
+
+const resetState = () => {
+    state.first = "";
+    state.second = "";
+    state.operator = "";
+}
+
 const addOperatorEvents = () => {
     const operatorButtons = document.querySelectorAll("button.operator");
     for (const button of operatorButtons) {
@@ -81,3 +117,4 @@ const addOperatorEvents = () => {
 
 addNumberEvents();
 addOperatorEvents();
+addEqualsEvent();
