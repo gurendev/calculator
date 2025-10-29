@@ -68,8 +68,13 @@ const getCurrentNumber = () => {
 }
 
 const handleOperatorClick = (e) => {
+    if (state.second) {
+        const equalsButton = document.querySelector("button.equals");
+        equalsButton.click();
+    } else {
+        updateDisplay(e.target.textContent);
+    }
     state["operator"] = e.target.id;
-    updateDisplay(e.target.textContent);
 }
 
 const calculateResult = () => {
